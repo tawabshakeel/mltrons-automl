@@ -2,9 +2,10 @@ from libraries import *
 
 
 class MltronsModelsDetails(object):
-    def __init__(self, problem_type):
+    def __init__(self, problem_type, order_of_features):
         self.model_details = dict()
         self.problem_type = problem_type
+        self.order_of_features = order_of_features
 
     @staticmethod
     def get_metric(problem_type):
@@ -52,7 +53,7 @@ class MltronsModelsDetails(object):
     def feature_importance(self, model):
         importance = list(model.get_feature_importance())
         df = pd.DataFrame()
-        df['columns'] = self.order_of_variables
+        df['columns'] = self.order_of_features
         df['importance'] = importance
 
         col = list(df['columns'])
